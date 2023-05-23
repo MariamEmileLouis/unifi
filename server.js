@@ -12,6 +12,7 @@ const port = 5000;
 app.use(cors())
 app.use(express.json());
 
+app.use('/app/auth', require('./routes/auth'));
 app.use('/app', require('./routes/toDo'));
 
 if(process.env.NODE_ENV === 'production'){
