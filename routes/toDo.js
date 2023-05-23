@@ -108,5 +108,18 @@ router.get("/getToDoById/:id", fetchUser, async (req, res) => {
   }
 });
 
+router.get("/getAllToDosForUser/:userId", fetchUser, async (req, res) => {
+  try {
+
+    const toDos = await ToDo.find({ user: req.params.userId  });
+
+    res.status(200).json(toDos);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
+    console.error(error.message);
+  }
+});
 
 module.exports = router;
